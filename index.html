@@ -26,33 +26,101 @@
 
     </header>
 
-<container class="container-xl outer-container row col-gap-2">
+<container class="container-fluid outer-container row col-gap-2">
     <div class="col-3">
         <div class="col-auto">
             <label for="inputCity" class="form-label display-6">Search for a City</label>
+            
           </div>
           <div class="col-auto">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control mb-3" id="userInput">
+            
+            <button id="submitBtn" type="submit" class="btn btn-primary mb-3 col-12">Submit</button>
           </div>
         <ul class="row-gap-3 list-group gap-2">
         
-            <li class="list-group-item list-group-item-action" id="first" ></li>
-            <li class="list-group-item list-group-item-action">A second item</li>
-            <li class="list-group-item list-group-item-action">A third item</li>
-            <li class="list-group-item list-group-item-action">A fourth item</li>
-            <li class="list-group-item list-group-item-action">And a fifth one</li>
+            <li class="list-group-item list-group-item-action list-group-item-primary" id="first" ></li>
+            
       </ul>
 
       
     
     
     </div>
+    <div class="col">
     <div class="col-8 d-flex flex-column gap-3">
         <h2 id="inner"></h2>
         <h5 id="cur-temp"></h5>
         <h5 id="cur-wind"></h5>
         <h5 id="cur-hum"></h5>
+    </div>   
+        <div class="row">
+            <div class="col-lg-2 col-md-4">
+                <div class="card d-flex">
+                    <div class="card-body" id="day1">
+                        <h5 class="card-title date"></h5>
+                        <ul class="list-group forecast-list wx-info" id="list-day1">
+                            
+                        
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-4">
+                <div class="card d-flex">
+                    <div class="card-body" id="day2">
+                        <h5 class="date"></h5>
+                        <ul class="list-group forecast-list" id="list-day2">
+                            
+                        
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4">
+                <div class="card d-flex">
+                    <div class="card-body" id="day3">
+                        <h5 class="card-title date"></h5>
+                            <ul class="list-group forecast-list" id="list-day3">
+                                
+                            
+                                
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4">
+                <div class="card d-flex">
+                    <div class="card-body" id="day4">
+                        <h5 class="card-title date"></h5>
+                            <ul class="list-group forecast-list" id="list-day4">
+                                
+                            
+                                
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-4">
+                <div class="card d-flex">
+                    <div class="card-body" id="day5">
+                        <h5 class="card-title date"></h5>
+                            <ul class="list-group forecast-list" id="list-day5">
+                                
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            
+
+          </div>
       </div>
+      </div>
+      
 </container>
 
 

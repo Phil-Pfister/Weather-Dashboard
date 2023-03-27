@@ -10,3 +10,8 @@ header {
     
     padding: 1rem;
 }
+
+.forecast-list {
+    list-style-type: none;
+}
+
