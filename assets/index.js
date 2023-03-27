@@ -29,16 +29,27 @@ function getCurrent() {
     .then(function (data) {
         console.log("current")
         console.log(data);
+
+    var curData = {
+        cityName: data.name,
+        curIcon: data.weather[0].icon,
+        curTemp: Math.round(data.main.temp),
+        curHum: data.main.humidity,
+        curWind: data.wind.speed,
+
+    }  
     var inner = document.getElementById('inner');
-    var curTemp = document.getElementById('cur-temp');
-    var curWind = document.getElementById('cur-wind');
-    var curHum = document.getElementById('cur-hum');
+    var curIconEl = document.getElementById('cur-icon')
+    var curTempEl = document.getElementById('cur-temp');
+    var curWindEl = document.getElementById('cur-wind');
+    var curHumEl = document.getElementById('cur-hum');
     var first = document.getElementById('first');
-    curTemp.innerHTML = "Current Temp: " + data.main.temp + "° F";
-    curWind.innerHTML = "Winds: " + data.wind.speed + " MPH";
-    curHum.innerHTML = "Humidity: " + data.main.humidity + "%";
+    curIconEl.src =  "https://openweathermap.org/img/wn/" + curData.curIcon + ".png";
+    curTempEl.innerHTML = "Current Temp: " + curData.curTemp + "° F";
+    curWindEl.innerHTML = "Winds: " + curData.curWind + " MPH";
+    curHumEl.innerHTML = "Humidity: " + curData.curHum + "%";
     inner.innerHTML = data.name + "  " + dayjs().format('(M/D/YYYY)');
-    first.innerHTML = data.name;
+    first.innerHTML = curData.cityName;
     
        
     });
@@ -57,6 +68,7 @@ fetch(forecastUrl)
 .then(function (data) {
     console.log("forecast");
     console.log(data);
+    console.log(data.list[6].weather[0].icon);
 
     var date1 = document.querySelector('#day1 .date');
     var date2 = document.querySelector('#day2 .date');
@@ -78,9 +90,9 @@ fetch(forecastUrl)
     list1.appendChild(forHumEl1);
     list1.appendChild(forWindEl1);
     
-    var highTemp = "High temp: " + data.list[6].main.temp + "%";
-    var humForecast = "Humidity: " + data.list[6].main.humidity + "°F";
-    var windForecast = "Winds: " + data.list[6].wind.speed + " MPH";
+    var highTemp = "High temp: " + data.list[0].main.temp + "°F";
+    var humForecast = "Humidity: " + data.list[0].main.humidity + "%" ;
+    var windForecast = "Winds: " + data.list[0].wind.speed + " MPH";
 
     forTempEl1.textContent = highTemp;
     forHumEl1.textContent = humForecast;
@@ -94,9 +106,9 @@ fetch(forecastUrl)
     list2.appendChild(forHumEl2);
     list2.appendChild(forWindEl2);
     
-    var highTemp = "High temp: " + data.list[14].main.temp + "%";
-    var humForecast = "Humidity: " + data.list[14].main.humidity + "°F";
-    var windForecast = "Winds: " + data.list[14].wind.speed + " MPH";
+    var highTemp = "High temp: " + data.list[18].main.temp + "°F";
+    var humForecast = "Humidity: " + data.list[18].main.humidity + "%";
+    var windForecast = "Winds: " + data.list[18].wind.speed + " MPH";
 
     forTempEl2.textContent = highTemp;
     forHumEl2.textContent = humForecast;
@@ -111,9 +123,9 @@ fetch(forecastUrl)
     list3.appendChild(forHumEl3);
     list3.appendChild(forWindEl3);
     
-    var highTemp = "High temp: " + data.list[22].main.temp + "%";
-    var humForecast = "Humidity: " + data.list[22].main.humidity + "°F";
-    var windForecast = "Winds: " + data.list[22].wind.speed + " MPH";
+    var highTemp = "High temp: " + data.list[14].main.temp + "°F";
+    var humForecast = "Humidity: " + data.list[14].main.humidity + "%";
+    var windForecast = "Winds: " + data.list[14].wind.speed + " MPH";
 
     forTempEl3.textContent = highTemp;
     forHumEl3.textContent = humForecast;
@@ -127,9 +139,9 @@ fetch(forecastUrl)
     list4.appendChild(forHumEl4);
     list4.appendChild(forWindEl4);
     
-    var highTemp = "High temp: " + data.list[30].main.temp + "%";
-    var humForecast = "Humidity: " + data.list[30].main.humidity + "°F";
-    var windForecast = "Winds: " + data.list[30].wind.speed + " MPH";
+    var highTemp = "High temp: " + data.list[22].main.temp + "°F";
+    var humForecast = "Humidity: " + data.list[22].main.humidity + "%";
+    var windForecast = "Winds: " + data.list[22].wind.speed + " MPH";
 
     forTempEl4.textContent = highTemp;
     forHumEl4.textContent = humForecast;
@@ -143,9 +155,9 @@ fetch(forecastUrl)
     list5.appendChild(forHumEl5);
     list5.appendChild(forWindEl5);
     
-    var highTemp = "High temp: " + data.list[38].main.temp + "%";
-    var humForecast = "Humidity: " + data.list[38].main.humidity + "°F";
-    var windForecast = "Winds: " + data.list[38].wind.speed + " MPH";
+    var highTemp = "High temp: " + data.list[30].main.temp + "°F";
+    var humForecast = "Humidity: " + data.list[30].main.humidity + "%";
+    var windForecast = "Winds: " + data.list[30].wind.speed + " MPH";
 
     forTempEl5.textContent = highTemp;
     forHumEl5.textContent = humForecast;
