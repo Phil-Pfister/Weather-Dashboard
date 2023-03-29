@@ -1,3 +1,5 @@
+// universal variables
+
 var apiKey = "dc119b3a8e1dae4639fd809d8698a1d3";
 var city = localStorage.getItem('savedCity');
 var body = $('<body>');
@@ -12,18 +14,20 @@ var list5 = document.getElementById('list-day5');
 var cardBodyDay1 = document.getElementById('day1')
 var dataArray =[];
 
+//dayjs to display date on screen
 var now = dayjs();
-console.log(dayjs.unix(1680028024).format('M/D/YYYY hh:mmA'));
+
 var day1 = now.add(1, 'day').format('M/D/YYYY');
 var day2 = now.add(2, 'day').format('M/D/YYYY');
 var day3 = now.add(3, 'day').format('M/D/YYYY');
 var day4 = now.add(4, 'day').format('M/D/YYYY');
 var day5 = now.add(5, 'day').format('M/D/YYYY');
-console.log(day5);
+
 if(city === 0) {
     city = "Houston"
 }
 
+//handles the current weather api and displays info on the screen
 function getCurrent() {
     if(!city) {
         city = "Houston"
@@ -38,6 +42,7 @@ function getCurrent() {
         console.log("current")
         console.log(data);
 
+        // object for current info
     var curData = {
         cityName: data.name,
         curIcon: data.weather[0].icon,
@@ -47,7 +52,7 @@ function getCurrent() {
 
     }  
   
-    
+    // dom traversal
     var inner = document.getElementById('inner');
     var curIconEl = document.getElementById('cur-icon')
     var curTempEl = document.getElementById('cur-temp');
@@ -66,7 +71,7 @@ function getCurrent() {
     }
 
 
-
+// gets api information for 5 day forecast and displays it on the screen
 
 function getForecast() {
     if(!city) {
@@ -76,7 +81,13 @@ var forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city +
 
 fetch(forecastUrl)
 .then(function (response) {
+    if(response.ok) {
     return response.json();
+    } else {
+      
+            alert("please try again");
+        
+    }
 })
 .then(function (newData) {
     for (i=0; i<40; i++) {
@@ -93,7 +104,7 @@ fetch(forecastUrl)
     console.log(data);
     
     
-
+    // handles date element in forecast boxes
     var date1 = document.querySelector('#day1 .date');
     var date2 = document.querySelector('#day2 .date');
     var date3 = document.querySelector('#day3 .date');
@@ -214,7 +225,7 @@ fetch(forecastUrl)
    
 });
 }
-
+// retrieves saved item from last visit and makes it the active city
 function getLast() {
    city =  localStorage.getItem('savedCity');
    var newCity = document.createElement('li');
@@ -226,8 +237,10 @@ getLast();
 getForecast();
 getCurrent();
 
+// this handles search for particular city
 submit.addEventListener('click', function(event) {
     event.preventDefault;
+ 
     list1.replaceChildren();
     list2.replaceChildren();
     list3.replaceChildren();
@@ -244,10 +257,21 @@ submit.addEventListener('click', function(event) {
     getForecast();
 });
 
-// var cityButton = document.querySelectorAll('#city-list .new-city');
-// cityButton.addEventListener('click', function() {
-    
-// })
+// this code handles the click on past searches
+var cityListEl = $('#city-list');
+var newCityEl = $('.new-city')
+cityListEl.on('click', '.new-city', function(event){
+    list1.replaceChildren();
+    list2.replaceChildren();
+    list3.replaceChildren();
+    list4.replaceChildren();
+    list5.replaceChildren();
+    city = event.target.innerHTML;  //this line is wrong - see 05 - 09
+    console.log(city);
+    dataArray = [];
+    getCurrent();
+    getForecast();
+});
 
 
     
