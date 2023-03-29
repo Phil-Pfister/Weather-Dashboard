@@ -217,12 +217,6 @@ fetch(forecastUrl)
     forHumEl5.textContent = humForecast;
     forWindEl5.textContent = windForecast;
  
-
-    
-
-
-
-   
 });
 }
 // retrieves saved item from last visit and makes it the active city
@@ -233,20 +227,24 @@ function getLast() {
     cityList.appendChild(newCity);
     newCity.textContent = city;
 }
+// on page load - these functions run
 getLast();
 getForecast();
 getCurrent();
 
 // this handles search for particular city
-submit.addEventListener('click', function(event) {
-    event.preventDefault;
- 
+submit.addEventListener('click', function() {
+    // event.preventDefault;
+    //clears text from forecast boxes
     list1.replaceChildren();
     list2.replaceChildren();
     list3.replaceChildren();
     list4.replaceChildren();
     list5.replaceChildren();
+
+    //sets new city by user input
     city = userCity.value.trim();
+    userCity.value = "";
     var newCity = document.createElement('li');
     newCity.setAttribute('class', 'list-group-item list-group-item-action new-city');
     cityList.appendChild(newCity);
@@ -261,13 +259,16 @@ submit.addEventListener('click', function(event) {
 var cityListEl = $('#city-list');
 var newCityEl = $('.new-city')
 cityListEl.on('click', '.new-city', function(event){
+    //clears data from the forecast boxes
     list1.replaceChildren();
     list2.replaceChildren();
     list3.replaceChildren();
     list4.replaceChildren();
     list5.replaceChildren();
-    city = event.target.innerHTML;  //this line is wrong - see 05 - 09
+    // sets the city as the clicked item
+    city = event.target.innerHTML; 
     console.log(city);
+    //clears the array from the previous api call
     dataArray = [];
     getCurrent();
     getForecast();

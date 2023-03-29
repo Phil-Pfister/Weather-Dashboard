@@ -1,6 +1,6 @@
 # Weather Dashboard
 
-Provides a quick search of current weather with a five day forecast
+Provides a quick search of current weather with a five day forecast in a city of your choice.
 
 ## Description
 
