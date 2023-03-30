@@ -13,6 +13,9 @@ var list4 = document.getElementById('list-day4');
 var list5 = document.getElementById('list-day5');
 var cardBodyDay1 = document.getElementById('day1')
 var dataArray =[];
+var lat = "";
+var lon = "";
+
 
 //dayjs to display date on screen
 var now = dayjs();
@@ -23,16 +26,47 @@ var day3 = now.add(3, 'day').format('M/D/YYYY');
 var day4 = now.add(4, 'day').format('M/D/YYYY');
 var day5 = now.add(5, 'day').format('M/D/YYYY');
 
-if(city === 0) {
-    city = "Houston"
-}
+
+
+//geocoding api
+function getCoordinates() {
+    
+       
+    
+   
+    var coordinateUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + apiKey;
+    fetch(coordinateUrl)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (corData) {
+        console.log(corData);
+        console.log("lat and lon");
+        lat = corData[0].lat;
+        lon = corData[0].lon;
+        
+       
+       
+       
+       console.log(lat);
+        
+  
+       console.log(lat, lon);
+       getCurrent();
+       getForecast();
+    })
+   
+};
+
+
+
 
 //handles the current weather api and displays info on the screen
 function getCurrent() {
-    if(!city) {
-        city = "Houston"
-    }
-    var currentUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=' + apiKey;
+    
+
+  
+    var currentUrl =` https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
     
     fetch(currentUrl)
     .then(function (response) {
@@ -74,22 +108,21 @@ function getCurrent() {
 // gets api information for 5 day forecast and displays it on the screen
 
 function getForecast() {
-    if(!city) {
-        city = "Houston"
-    }
-var forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=imperial&appid=' + apiKey;
+    var forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&units=imperial&appid=' + apiKey;
 
-fetch(forecastUrl)
-.then(function (response) {
-    if(response.ok) {
-    return response.json();
-    } else {
+    fetch(forecastUrl)
+    .then(function (response) {
+        if(response.ok) {
+        return response.json();
+        } else {
       
             alert("please try again");
         
-    }
+        };
 })
 .then(function (newData) {
+    console.log("forecast city");
+    console.log(newData.city);
     for (i=0; i<40; i++) {
         
         if (newData.list[i].dt_txt.includes("15:00:00")) {
@@ -218,7 +251,10 @@ fetch(forecastUrl)
     forWindEl5.textContent = windForecast;
  
 });
-}
+
+};
+
+
 // retrieves saved item from last visit and makes it the active city
 function getLast() {
    city =  localStorage.getItem('savedCity');
@@ -229,8 +265,7 @@ function getLast() {
 }
 // on page load - these functions run
 getLast();
-getForecast();
-getCurrent();
+getCoordinates();
 
 // this handles search for particular city
 submit.addEventListener('click', function() {
@@ -241,18 +276,19 @@ submit.addEventListener('click', function() {
     list3.replaceChildren();
     list4.replaceChildren();
     list5.replaceChildren();
+    
 
     //sets new city by user input
     city = userCity.value.trim();
+    getCoordinates();
     userCity.value = "";
     var newCity = document.createElement('li');
     newCity.setAttribute('class', 'list-group-item list-group-item-action new-city');
     cityList.appendChild(newCity);
     newCity.textContent = city;
     localStorage.setItem('savedCity', city);
-    dataArray = [],
-    getCurrent();
-    getForecast();
+    dataArray = [];
+    
 });
 
 // this code handles the click on past searches
@@ -270,8 +306,7 @@ cityListEl.on('click', '.new-city', function(event){
     console.log(city);
     //clears the array from the previous api call
     dataArray = [];
-    getCurrent();
-    getForecast();
+    getCoordinates();
 });
 
 
