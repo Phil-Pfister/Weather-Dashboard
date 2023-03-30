@@ -34,7 +34,7 @@ function getCoordinates() {
        
     
    
-    var coordinateUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + apiKey;
+    var coordinateUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=" + apiKey;
     fetch(coordinateUrl)
     .then(function (response) {
         return response.json();
@@ -97,7 +97,7 @@ function getCurrent() {
     curTempEl.innerHTML = "Current Temp: " + curData.curTemp + "° F";
     curWindEl.innerHTML = "Winds: " + curData.curWind + " MPH";
     curHumEl.innerHTML = "Humidity: " + curData.curHum + "%";
-    inner.innerHTML = data.name + "  " + dayjs().format('(M/D/YYYY)');
+    inner.innerHTML = data.name + "  "  + data.sys.country + "  " + dayjs().format('(M/D/YYYY)');
     first.innerHTML = curData.cityName;
     
        
