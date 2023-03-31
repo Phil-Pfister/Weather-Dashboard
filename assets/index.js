@@ -41,18 +41,11 @@ function getCoordinates() {
         return response.json();
     })
     .then(function (corData) {
-        console.log(corData);
-        console.log("lat and lon");
+       
         lat = corData[0].lat;
         lon = corData[0].lon;
-        
-       
-       
-       
-       console.log(lat);
-        
-  
-       console.log(lat, lon);
+    
+    //    console.log(lat, lon);
        getCurrent();
        getForecast();
     })
@@ -74,8 +67,8 @@ function getCurrent() {
         return response.json();
     })
     .then(function (data) {
-        console.log("current")
-        console.log(data);
+        // console.log("current")
+        // console.log(data);
 
         // object for current info
     var curData = {
@@ -122,8 +115,7 @@ function getForecast() {
         };
 })
 .then(function (newData) {
-    console.log("forecast city");
-    console.log(newData.city);
+   
     for (i=0; i<40; i++) {
         
         if (newData.list[i].dt_txt.includes("15:00:00")) {
@@ -134,8 +126,8 @@ function getForecast() {
     
 })
 .then(function (data) {
-    console.log("forecast");
-    console.log(data);
+    // console.log("forecast");
+    // console.log(data);
     
     
     // handles date element in forecast boxes
@@ -270,7 +262,7 @@ getCoordinates();
 
 // this handles search for particular city
 submit.addEventListener('click', function() {
-    // event.preventDefault;
+    
     //clears text from forecast boxes
     list1.replaceChildren();
     list2.replaceChildren();
