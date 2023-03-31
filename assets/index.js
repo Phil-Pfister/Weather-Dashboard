@@ -96,7 +96,7 @@ function getCurrent() {
     var first = document.getElementById('first');
     curIconEl.src =  "https://openweathermap.org/img/wn/" + curData.curIcon + ".png";
     curTempEl.innerHTML = "Current Temp: " + curData.curTemp + "° F";
-    curWindEl.innerHTML = "Winds: " + curData.curWind + " MPH";
+    curWindEl.innerHTML = "Winds: " + Math.round(curData.curWind) + " MPH";
     curHumEl.innerHTML = "Humidity: " + curData.curHum + "%";
     inner.innerHTML = data.name + "  "  + data.sys.country + "  " + dayjs().format('(M/D/YYYY)');
     first.innerHTML = curData.cityName;
@@ -165,7 +165,7 @@ function getForecast() {
     forIconEl1.src =  "https://openweathermap.org/img/wn/" + data[0].weather[0].icon + ".png";
     var highTemp = "Temp: " + Math.round(data[0].main.temp) + "°F";
     var humForecast = "Humidity: " + data[0].main.humidity + "%" ;
-    var windForecast = "Winds: " + data[0].wind.speed + " MPH";
+    var windForecast = "Winds: " + Math.round(data[0].wind.speed) + " MPH";
 
     forTempEl1.textContent = highTemp;
     forHumEl1.textContent = humForecast;
@@ -185,7 +185,7 @@ function getForecast() {
     forIconEl2.src =  "https://openweathermap.org/img/wn/" + data[0].weather[0].icon + ".png";
     var highTemp = "Temp: " + Math.round(data[1].main.temp) + "°F";
     var humForecast = "Humidity: " + data[1].main.humidity + "%";
-    var windForecast = "Winds: " + data[1].wind.speed + " MPH";
+    var windForecast = "Winds: " + Math.round(data[1].wind.speed) + " MPH";
 
     forTempEl2.textContent = highTemp;
     forHumEl2.textContent = humForecast;
@@ -205,7 +205,7 @@ function getForecast() {
     forIconEl3.src =  "https://openweathermap.org/img/wn/" + data[0].weather[0].icon + ".png";
     var highTemp = "Temp: " + Math.round(data[2].main.temp) + "°F";
     var humForecast = "Humidity: " + data[2].main.humidity + "%";
-    var windForecast = "Winds: " + data[2].wind.speed + " MPH";
+    var windForecast = "Winds: " + Math.round(data[2].wind.speed) + " MPH";
 
     forTempEl3.textContent = highTemp;
     forHumEl3.textContent = humForecast;
@@ -225,7 +225,7 @@ function getForecast() {
     forIconEl4.src =  "https://openweathermap.org/img/wn/" + data[0].weather[0].icon + ".png";
     var highTemp = "Temp: " + Math.round(data[3].main.temp) + "°F";
     var humForecast = "Humidity: " + data[3].main.humidity + "%";
-    var windForecast = "Winds: " + data[3].wind.speed + " MPH";
+    var windForecast = "Winds: " + Math.round(data[3].wind.speed) + " MPH";
 
     forTempEl4.textContent = highTemp;
     forHumEl4.textContent = humForecast;
@@ -245,7 +245,7 @@ function getForecast() {
     forIconEl5.src =  "https://openweathermap.org/img/wn/" + data[0].weather[0].icon + ".png";
     var highTemp = "Temp: " + Math.round(data[4].main.temp) + "°F";
     var humForecast = "Humidity: " + data[4].main.humidity + "%";
-    var windForecast = "Winds: " + data[4].wind.speed + " MPH";
+    var windForecast = "Winds: " + Math.round(data[4].wind.speed) + " MPH";
 
     forTempEl5.textContent = highTemp;
     forHumEl5.textContent = humForecast;
