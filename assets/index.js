@@ -34,7 +34,7 @@ function getCoordinates() {
        
     
    
-    var coordinateUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=f9d22422fd45eb626a5df5f3314e320e"
+    var coordinateUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=" + apiKey;
    
     fetch(coordinateUrl)
     .then(function (response) {
